@@ -152,6 +152,7 @@ module Enumerable
     def palindrome?()
         string = self
         pal = []
+        # iterates over every element of the object pal
         string.reverse_each {|i| pal << i}
         if(string == pal)
             true
@@ -168,5 +169,19 @@ p ([1, 2, 3, 2, 1].palindrome?)
 
 class CartesianProduct
     include Enumerable
-    # code
+    def initialize(cartesian1, cartesian2)
+        @cartesian1 = cartesian1
+        @cartesian2 = cartesian2
+    end
+    def cartesian_calc
+        @cartesian1.each do |i|
+            @cartesian2.each do |j|
+                yield ([i, j])
+            end
+        end
+    end
 end
+
+# Part 4 test cases
+c = CartesianProduct.new([:a, :b], [4, 5])
+c.cartesian_calc { |elt| puts elt.inspect}
