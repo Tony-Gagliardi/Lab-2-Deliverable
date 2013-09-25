@@ -23,14 +23,14 @@ end
 
 # Part 1 (a) test cases
 dessert = Dessert.new("Apple Turnover", 395)
-p "Is dessert healthy?"
+p "Is an Apple Turnover healthy?"
 p dessert.healthy?
-p "Is dessert delicious"
+p "Is an Apple Turnover delicious"
 p dessert.delicious?
 dessert2 = Dessert.new("Ice Cream", 199)
-p "Is dessert2 healthy?"
+p "Is Ice Cream healthy?"
 p dessert2.healthy?
-p "Is dessert2 delicious?"
+p "Is Ice Cream delicious?"
 p dessert2.delicious?
 
 class JellyBean < Dessert
@@ -52,13 +52,13 @@ end
 bean1 = JellyBean.new("Black Bean", 17, "black licorice")
 bean2 = JellyBean.new("Yellow Bean", 12, "popcorn")
 
-p "Is bean1 delicious?"
+p "Is a black licorice jelly bean delicious?"
 p bean1.delicious?
-p "Is bean1 healthy?"
+p "Is black licorice jelly bean healthy?"
 p bean1.healthy?
-p "Is bean2 delicious?"
+p "Is popcorn jelly bean delicious?"
 p bean2.delicious?
-p "Is bean2 healthy?"
+p "Is popcorn jelly bean healthy?"
 p bean2.healthy?
 
 
@@ -98,7 +98,7 @@ p f.bar_history
 # Part 3: More Object Oriented Programming
 
  class Numeric
-    @@currencies = {'dollar' => 1.0, 'yen' => 0.013, 'euro' => 1.292, 'rupee' => 0.019}
+    @@currencies = {'yen' => 0.013, 'euro' => 1.292, 'rupee' => 0.019,'dollar' => 1.0}
     def method_missing(method_id)
         singular_currency = method_id.to_s.gsub( /s$/, '')
         if @@currencies.has_key?(singular_currency)
@@ -126,11 +126,14 @@ p f.bar_history
 end
 
 # Part 3 (a) test cases
+p "What is 125 euro's in USD?"
 p (125.euro.in(:dollar))
-p (270.rupees.in(:euro))
-p (199.yen.in(:rupees))
+p "What is 2500 rupees in Euro's"
+p (2500.rupee.in(:euro))
+p "What 2000 rupees in USD"
+p (150.dollar.in(:rupee))
 
-# Part 3.b
+# Part 3.b: Palindromes
 class String
     def palindrome?()
         string = self.upcase.gsub(/[^A-Z]/, "")
@@ -147,7 +150,7 @@ end
 p ("A man, a plan, a canal -- Panama".palindrome?)
 p ("Bob's Burgers".palindrome?)
 
-# Part 3.c
+# Part 3.c: Palindromes again
 module Enumerable
     def palindrome?()
         string = self
@@ -162,7 +165,7 @@ module Enumerable
     end
 end
 
-# Part 3 (c) test cases
+# Part 3 (c) test case
 p ([1, 2, 3, 2, 1].palindrome?)
 
 # Part 4: Blocks
@@ -170,6 +173,7 @@ p ([1, 2, 3, 2, 1].palindrome?)
 class CartesianProduct
     include Enumerable
     def initialize(cartesian1, cartesian2)
+        # initialize our two collections
         @cartesian1 = cartesian1
         @cartesian2 = cartesian2
     end
